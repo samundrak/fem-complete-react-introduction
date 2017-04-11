@@ -1,8 +1,10 @@
 /* global document */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route } from 'react-router-dom';
-import Hello from './components/Hello';
+import { BrowserRouter, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './pages/Home';
+import Header from './components/Header';
 
 class App extends React.Component {
 
@@ -13,11 +15,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div className="app">
-          <Route exact path="/hello" component={Hello} />
+          <Header title="Home" />
+          <div className="container">
+            <div className="row">
+              <Route exact path="/" component={Home} />
+            </div>
+          </div>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
