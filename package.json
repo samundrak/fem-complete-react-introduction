@@ -16,6 +16,8 @@
         "css-loader": "^0.28.0",
         "emojis-list": "^2.1.0",
         "encoding": "^0.1.12",
+        "enzyme": "^2.8.1",
+        "enzyme-to-json": "^1.5.0",
         "eslint": "^3.19.0",
         "eslint-config-airbnb": "^14.1.0",
         "eslint-import-resolver-webpack": "^0.8.1",
@@ -28,6 +30,7 @@
         "iconv-lite": "^0.4.15",
         "is-stream": "^1.1.0",
         "isomorphic-fetch": "^2.2.1",
+        "jest": "^19.0.2",
         "js-tokens": "^3.0.1",
         "json5": "^0.5.1",
         "loader-utils": "^1.1.0",
@@ -36,7 +39,7 @@
         "object-assign": "^4.1.1",
         "promise": "^7.1.1",
         "prop-types": "^15.5.6",
-        "react": "^15.5.3",
+        "react": "latest",
         "react-bootstrap": "^0.30.8",
         "react-dom": "^15.5.3",
         "react-router": "^4.0.0",
@@ -47,12 +50,23 @@
         "url-loader": "^0.5.8",
         "whatwg-fetch": "^2.0.3"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "react-test-renderer": "^15.5.4"
+    },
     "scripts": {
         "start": "php -S locahost:3000 -t ./",
         "build": "webpack",
         "watch": "npm run build -- -w",
-        "dev": "webpack-dev-server"
+        "dev": "webpack-dev-server",
+        "test": "./node_modules/.bin/jest",
+        "update-test": "npm t -- -u",
+        "cover": "npm t -- --coverage"
+    },
+    "jest": {
+        "moduleNameMapper": {
+            "styles": "<rootDir>/styles",
+            "components": "<rootDir>/src/components"
+        }
     },
     "keywords": [],
     "author": "",

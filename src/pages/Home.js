@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import VideoCard from 'components/VideoCard';
+import VideoCard from '../components/VideoCard';
 
 const Home = () => (
   <Row className="show-grid">

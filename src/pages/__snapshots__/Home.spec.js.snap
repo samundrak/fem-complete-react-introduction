@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home snapshot test 1`] = `
+<Row
+  bsClass="row"
+  className="show-grid"
+  componentClass="div"
+>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    md={3}
+    xs={6}
+  >
+    <VideoCard />
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    md={3}
+    xs={6}
+  >
+    <VideoCard />
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    md={3}
+    xs={6}
+  >
+    <VideoCard />
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    md={3}
+    xs={6}
+  >
+    <VideoCard />
+  </Col>
+</Row>
+`;
