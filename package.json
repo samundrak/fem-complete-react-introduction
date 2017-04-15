@@ -5,6 +5,7 @@
     "main": "webpack.config.js",
     "dependencies": {
         "asap": "^2.0.5",
+        "axios": "^0.16.1",
         "babel-core": "6.4.5",
         "babel-eslint": "^7.2.1",
         "babel-loader": "6.2.1",
@@ -44,11 +45,14 @@
         "react-dom": "^15.5.3",
         "react-router": "^4.0.0",
         "react-router-dom": "^4.0.0",
+        "restify": "^4.3.0",
+        "restify-plugins": "^1.6.0",
         "setimmediate": "^1.0.5",
         "style-loader": "^0.16.1",
         "ua-parser-js": "^0.7.12",
         "url-loader": "^0.5.8",
-        "whatwg-fetch": "^2.0.3"
+        "whatwg-fetch": "^2.0.3",
+        "youtube-node": "^1.3.0"
     },
     "devDependencies": {
         "react-test-renderer": "^15.5.4"

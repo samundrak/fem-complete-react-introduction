@@ -1,26 +1,36 @@
 import React from 'react';
-//import 'styles/card.css';
+import 'styles/card.css';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const VideoCard = () => (
+const VideoCard = ({ videoId, title, description, publishedAt, thumbnail, channelTitle }) => (
   <div className="card">
     <img
       alt="images" className="card-img-top"
-      src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif"
+      src={thumbnail}
     />
-    <div className="card-block">
-      <h4 className="card-title">Tawshif Ahsan Khan</h4>
-      <div className="meta">
-        <a href="/">Friends</a>
+    <Link to={`/video/${videoId}`}>
+      <div className="card-block">
+        <h4 className="card-title">{title}</h4>
+        <div className="card-text">
+          {description}
+        </div>
       </div>
-      <div className="card-text">
-        Tawshif is a web designer living in Bangladesh.
-      </div>
-    </div>
+    </Link>
     <div className="card-footer">
-      <span className="float-right">Joined in 2013</span>
-      <span><i className="" />75 Friends</span>
+      <span className="float-right">{publishedAt}</span>
+      <br />
+      <span>{channelTitle}</span>
     </div>
   </div>
 );
 
+VideoCard.propTypes = {
+  videoId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  channelTitle: PropTypes.string.isRequired,
+};
 export default VideoCard;
