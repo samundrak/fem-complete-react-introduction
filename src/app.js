@@ -2,11 +2,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import Video from './pages/Video';
 import Header from './components/Header';
-import { getDefaultVideos } from './api/calls';
+import { getDefaultVideos, search } from './api/calls';
 
 class App extends React.Component {
 
@@ -14,6 +15,7 @@ class App extends React.Component {
     super();
     this.state = {
       videos: [],
+      searchTerm: '',
     };
   }
 
@@ -34,24 +36,54 @@ class App extends React.Component {
     return video;
   }
 
+  handleSearch() {
+    return (event) => {
+      this.setState({ searchTerm: event.target.value });
+    };
+  }
+
+  searchItem() {
+    return () => {
+      console.log(this);
+      search({ q: this.state.searchTerm })
+        .then((response) => {
+          this.setState({ videos: response.data.items });
+        });
+    };
+  }
+
   render() {
     return (
-      <BrowserRouter>
-        <div className="app">
-          <Header title="Home" />
-          <div className="container">
-            <div className="row">
-              <Route exact path="/" component={() => <Home videos={this.state.videos} />} />
-              <Route
-                exact path="/video/:videoId"
-                component={props => <Video video={this.getVideoDetails(props.match.params.id)} />}
-              />
+      <AppContainer>
+        <BrowserRouter>
+          <div className="app">
+            <Header
+              title="Home"
+              handleSearch={this.handleSearch()}
+              searchItem={this.searchItem()}
+            />
+            <div className="container">
+              <div className="row">
+                <Route
+                  exact
+                  path="/"
+                  component={() => (
+                    <Home
+                      videos={this.state.videos}
+                    />)}
+                />
+                <Route
+                  exact path="/video/:videoId"
+                  component={Video}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </AppContainer>
     );
   }
+
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

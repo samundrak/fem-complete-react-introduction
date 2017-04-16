@@ -3,7 +3,10 @@ const path = require('path');
 console.log(__dirname)
 module.exports = {
   context: __dirname,
-  entry: path.resolve(__dirname, 'src/app.js'),
+  entry: [
+    'react-hot-loader/patch',
+    path.resolve(__dirname, 'src/app.js')
+  ],
   devtool: 'eval',
   output: {
     path: path.join(__dirname, 'public'),
@@ -23,6 +26,7 @@ module.exports = {
     chunkd: true,
   },
   devServer: {
+    hot: true,
     publicPath: '/public/',
     historyApiFallback: true,
   },
@@ -35,11 +39,11 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       include: path.join(__dirname, 'src'),
-      loader: 'babel-loader',
-      query: {
-        presets: ['es2015'],
+      loaders: ['react-hot-loader/webpack', 'babel-loader'],
+      //query: {
+        //presets: ['es2015'],
         // plugins: ['transform-runtime'],
-      },
+      //},
     }, { test: /(\.css)$/, loaders: ['style', 'css'] },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
       { test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000' },
