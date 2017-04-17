@@ -2,12 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import Video from './pages/Video';
-import Header from './components/Header';
-import { getDefaultVideos, search } from './api/calls';
+import HeaderContainer from './containers/HeaderContainer';
+import { getDefaultVideos } from './api/calls';
+import store from './store';
 
 class App extends React.Component {
 
@@ -36,32 +37,13 @@ class App extends React.Component {
     return video;
   }
 
-  handleSearch() {
-    return (event) => {
-      this.setState({ searchTerm: event.target.value });
-    };
-  }
-
-  searchItem() {
-    return () => {
-      console.log(this);
-      search({ q: this.state.searchTerm })
-        .then((response) => {
-          this.setState({ videos: response.data.items });
-        });
-    };
-  }
 
   render() {
     return (
-      <AppContainer>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
           <div className="app">
-            <Header
-              title="Home"
-              handleSearch={this.handleSearch()}
-              searchItem={this.searchItem()}
-            />
+            <HeaderContainer />
             <div className="container">
               <div className="row">
                 <Route
@@ -79,8 +61,8 @@ class App extends React.Component {
               </div>
             </div>
           </div>
-        </BrowserRouter>
-      </AppContainer>
+        </Provider>
+      </BrowserRouter>
     );
   }
 

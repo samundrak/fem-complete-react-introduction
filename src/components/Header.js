@@ -3,7 +3,7 @@ import { Navbar, FormControl, Button, FormGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Header = ({ title, handleSearch, searchItem }) => (
+const Header = ({ value, title, handleSearch, searchItem }) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
@@ -14,7 +14,9 @@ const Header = ({ title, handleSearch, searchItem }) => (
     <Navbar.Collapse>
       <Navbar.Form pullLeft>
         <FormGroup>
+          {value} test
           <FormControl
+            value={value}
             onChange={handleSearch}
             type="text"
             placeholder="Search"
@@ -28,6 +30,7 @@ const Header = ({ title, handleSearch, searchItem }) => (
 );
 
 Header.propTypes = {
+  value: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   handleSearch: PropTypes.func.isRequired,
   searchItem: PropTypes.func.isRequired,
