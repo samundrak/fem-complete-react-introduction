@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import { searchTermChanged } from '../store/actions';
+import { searchTermChanged, searchVideos } from '../store/actions';
 
 const { string } = PropTypes;
 
@@ -16,7 +16,7 @@ class HeaderContainer extends React.Component {
 
   searchItem() {
     return () => {
-      console.log(this);
+      this.props.dispatch(searchVideos(this.props.searchTerm));
     };
   }
 

@@ -7,36 +7,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import Video from './pages/Video';
 import HeaderContainer from './containers/HeaderContainer';
-import { getDefaultVideos } from './api/calls';
 import store from './store';
 
 class App extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      videos: [],
-      searchTerm: '',
-    };
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
-
-  componentDidMount() {
-    getDefaultVideos()
-      .then((response) => {
-        this.setState({ videos: response.data.items });
-      });
-  }
-
-  getVideoDetails(videoId) {
-    let video = {};
-    this.state.videos.forEach((item) => {
-      if (item.id.videoId === videoId) {
-        video = item;
-      }
-    });
-    return video;
-  }
-
 
   render() {
     return (
@@ -49,10 +27,7 @@ class App extends React.Component {
                 <Route
                   exact
                   path="/"
-                  component={() => (
-                    <Home
-                      videos={this.state.videos}
-                    />)}
+                  component={Home}
                 />
                 <Route
                   exact path="/video/:videoId"

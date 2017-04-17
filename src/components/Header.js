@@ -14,7 +14,6 @@ const Header = ({ value, title, handleSearch, searchItem }) => (
     <Navbar.Collapse>
       <Navbar.Form pullLeft>
         <FormGroup>
-          {value} test
           <FormControl
             value={value}
             onChange={handleSearch}
